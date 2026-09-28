@@ -107,9 +107,11 @@ a{color:var(--brand);text-decoration:none}
 .asrc{font-size:11.5px;color:var(--fg-3);margin-top:20px;text-align:right}
 
 /* ===== VIBE ===== */
-.vhero{background:linear-gradient(135deg,#0B63CE,#1D8FE0);color:#fff;border-radius:var(--r);padding:30px 32px;margin-bottom:16px}
-.vhero h2{font-size:26px;font-weight:800;max-width:24ch;line-height:1.2}
-.vhero p{color:rgba(255,255,255,.88);margin-top:12px;max-width:80ch;font-size:13.5px;line-height:1.6}
+.vhero{background:linear-gradient(135deg,#12181F 0%,#1B2733 55%,#123047 100%);color:#fff;border-radius:var(--r);padding:30px 32px;margin-bottom:22px;position:relative;overflow:hidden}
+.vhero::after{content:'';position:absolute;right:-90px;top:-90px;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(63,195,232,.18),transparent 68%);pointer-events:none}
+.vhero .sk{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;font-weight:800;color:var(--brand-2)}
+.vhero h2{font-size:27px;font-weight:800;max-width:26ch;line-height:1.2;margin-top:10px}
+.vhero p{color:rgba(255,255,255,.82);margin-top:10px;max-width:80ch;font-size:14px;line-height:1.6}
 .vfacts{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
 .vfacts div{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.22);border-radius:var(--r-sm);padding:10px 16px}
 .vfacts .fv{font-size:16px;font-weight:800}
@@ -425,7 +427,7 @@ table.dec td,table.dec th{text-align:left;vertical-align:top;font-size:13px}
 .prow .pshot{width:52px;height:52px;object-fit:cover;object-position:top;border-radius:7px;border:1px solid var(--line);flex:none}
 
 /* ===== YEAR GRID ===== */
-.ygrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px}
+.ygrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(232px,1fr));gap:12px}
 .mcard{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:18px;box-shadow:var(--sh);
   cursor:pointer;transition:.18s;text-align:left;width:100%;display:flex;flex-direction:column;gap:12px}
 .mcard:hover{border-color:var(--brand);transform:translateY(-3px);box-shadow:0 10px 26px rgba(11,99,206,.12)}
@@ -437,11 +439,15 @@ table.dec td,table.dec th{text-align:left;vertical-align:top;font-size:13px}
 .mcard .mcount{font-size:26px;font-weight:800;font-variant-numeric:tabular-nums;line-height:1}
 .mcard .mlbl{font-size:10.5px;text-transform:uppercase;letter-spacing:.09em;color:var(--fg-3);font-weight:700;margin-top:2px}
 .mstrip{display:flex;gap:-6px;align-items:center}
-.mstrip img,.mstrip .ph{width:28px;height:28px;border-radius:50%;object-fit:cover;border:2px solid #fff;margin-right:-8px;background:var(--line)}
-.mstrip .ph{display:grid;place-items:center;font-size:9px;font-weight:800;color:#fff;background:linear-gradient(135deg,var(--brand),var(--violet))}
+.mstrip img,.mstrip .ph{width:34px;height:34px;border-radius:50%;object-fit:cover;border:2px solid #fff;margin-right:-8px;background:var(--line)}
+.mstrip .ph{display:grid;place-items:center;font-size:11px;font-weight:800;color:#fff;background:linear-gradient(135deg,var(--brand),var(--violet))}
 .mstrip .more{margin-left:14px;font-size:11px;color:var(--fg-3);font-weight:600}
+.mcard .mnum{display:flex;align-items:flex-end;justify-content:space-between;gap:12px}
+.mcard .mv2{text-align:right;flex:none}
+.mcard .mv2 b{display:block;font-size:17px;font-weight:800;font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+.mcard .mv2 span{display:block;font-size:11px;color:var(--fg-3);font-weight:600;margin-top:3px}
 .mbars{display:flex;gap:4px}
-.mbars i{height:4px;border-radius:2px;flex:1;display:block}
+.mbars i{height:6px;border-radius:3px;flex:1;display:block;cursor:help}
 
 /* ===== MONTH LIST ===== */
 .plist{display:flex;flex-direction:column;gap:9px}
@@ -622,11 +628,13 @@ footer{padding:26px 0 50px;color:var(--fg-3);font-size:11.5px;line-height:1.75;b
     </div>
   </section>
   <section role="tabpanel" tabindex="0" aria-labelledby="tab-cal" class="view" id="v-cal">
-    <div class="vh">
+    <div class="vhero">
+      <div class="sk">Ноябрь 2025 — август 2026</div>
       <h2>Календарь сезона 2025/2026</h2>
       <p>Двадцать семь публикаций за десять месяцев: выпуски шоу, конкурсы к ним и суперрозыгрыши. Выберите месяц, чтобы посмотреть размещения внутри. Последняя публикация сезона выходит в сентябре и в итоги пока не включена.</p>
     </div>
     <div class="kpis" id="calKpi"></div>
+    <div class="lgnd" id="calLgnd" style="margin:-8px 0 18px"></div>
     <div class="ygrid" id="year"></div>
   </section>
 
@@ -634,7 +642,8 @@ footer{padding:26px 0 50px;color:var(--fg-3);font-size:11.5px;line-height:1.75;b
   <section class="view" id="v-det"></section>
 
   <section role="tabpanel" tabindex="0" aria-labelledby="tab-spros" class="view" id="v-spros">
-    <div class="vh">
+    <div class="vhero">
+      <div class="sk">32 месяца наблюдений</div>
       <h2>Брендовый спрос: Wordstat</h2>
       <p>Частотность запросов по трём написаниям бренда, январь 2024 — август 2026, все регионы и устройства. Затенённая область — период спецпроекта.</p></div>
     <div class="kpis" id="wsKpi"></div>
@@ -663,13 +672,17 @@ footer{padding:26px 0 50px;color:var(--fg-3);font-size:11.5px;line-height:1.75;b
 
 
   <section role="tabpanel" tabindex="0" aria-labelledby="tab-itogi" class="view" id="v-itogi">
-    <div class="vh"><h2>Что показал сезон</h2>
+    <div class="vhero">
+      <div class="sk">Итоги сезона</div>
+      <h2>Что показал сезон</h2>
       <p>Сильные стороны и ограничения «Главного ингредиента» — и что из них следует для следующих активностей Midea.</p></div>
     <div class="grid" style="display:grid;gap:13px" id="concl"></div>
   </section>
 
   <section role="tabpanel" tabindex="0" aria-labelledby="tab-next" class="view" id="v-next">
-    <div class="vh"><h2>Что берём в следующий сезон</h2>
+    <div class="vhero">
+      <div class="sk">Предложения на следующий период</div>
+      <h2>Что берём в следующий сезон</h2>
       <p>Из итогов «Главного ингредиента» мы вывели три критерия и по ним подбирали следующие активности. Это не повтор прошлого формата, а его улучшенная версия.</p></div>
     <div class="g3" style="margin-bottom:16px">
       <div class="step"><div class="stn">1</div><div><h4>Дешёвый охват</h4><p>Частый контакт с брендом по низкой цене работал на знание. Сохраняем низкую стоимость контакта, но без затрат на собственный продакшн.</p></div></div>
@@ -699,7 +712,9 @@ footer{padding:26px 0 50px;color:var(--fg-3);font-size:11.5px;line-height:1.75;b
     </div>
   </section>
   <section role="tabpanel" tabindex="0" aria-labelledby="tab-idei" class="view" id="v-idei">
-    <div class="vh"><h2>Спецпроекты</h2>
+    <div class="vhero">
+      <div class="sk">Предложение 1</div>
+      <h2>Спецпроекты</h2>
       <p>Два направления на следующий период: работа с дизайнерами интерьеров и интеграция в кулинарные школы и гайды. Общий принцип — не рекламная вставка в ролик, а интеграция продукта в сам контент.</p></div>
     <div class="panel" style="margin-bottom:18px">
       <h3>Чем это лучше прошлого спецпроекта</h3>
@@ -737,7 +752,8 @@ footer{padding:26px 0 50px;color:var(--fg-3);font-size:11.5px;line-height:1.75;b
   </section>
 
   <section role="tabpanel" tabindex="0" aria-labelledby="tab-cmp" class="view" id="v-cmp">
-    <div class="vh">
+    <div class="vhero">
+      <div class="sk">12 выпусков · 27 публикаций</div>
       <h2>Сводный отчёт</h2>
       <p>Отметьте выпуски, чтобы сравнить их между собой. Все показатели ниже пересчитываются по выбранной группе.</p>
     </div>
@@ -853,6 +869,7 @@ for(let i=0;i<10;i++){ const d=new Date(2025,10+i,1); SEASON.push(`${d.getFullYe
 
 const epOf = n => E.find(x=>x.n===n);
 const TAGC = {episode:C.brand, contest:C.violet, super:C.warn};
+const KINDL = {episode:'Выпуск шоу', contest:'Конкурс к выпуску', super:'Суперрозыгрыш'};
 
 $('#year').innerHTML = SEASON.map(k=>{
   const [y,m]=k.split('-');
@@ -862,14 +879,21 @@ $('#year').innerHTML = SEASON.map(k=>{
   const eps = list.filter(p=>p.kind==='episode');
   const avs = eps.slice(0,4).map(p=>{const e=epOf(p.n);
     return e.avatar?`<img src="${e.avatar}" alt="">`:`<div class="ph">${e.guest.split(' ').map(w=>w[0]).join('')}</div>`;}).join('');
-  const bars = list.map(p=>`<i style="background:${TAGC[p.kind]}"></i>`).join('');
+  const esc=t=>String(t).replace(/"/g,'&quot;');
+  const bars = list.map(p=>`<i style="background:${TAGC[p.kind]}" data-tip="${esc(KINDL[p.kind])} · ${p.date}<br>${esc(p.title)}"></i>`).join('');
+  const sumV = list.reduce((a,p)=>a+p.views,0);
   return `<button class="mcard" data-k="${k}">
     <div class="mt2"><div class="mname">${MONL[+m-1]}</div><div class="myear">${y}</div></div>
-    <div><div class="mcount">${list.length}</div><div class="mlbl">${list.length===1?'размещение':list.length<5?'размещения':'размещений'}</div></div>
+    <div class="mnum">
+      <div><div class="mcount">${list.length}</div><div class="mlbl">${list.length===1?'размещение':list.length<5?'размещения':'размещений'}</div></div>
+      <div class="mv2"><b>${fmtK(sumV)}</b><span>просмотров</span></div>
+    </div>
     <div class="mbars">${bars}</div>
     ${eps.length?`<div class="mstrip">${avs}${eps.length>4?`<span class="more">+${eps.length-4}</span>`:''}</div>`:''}
   </button>`;
 }).join('');
+$('#calLgnd').innerHTML = Object.keys(KINDL).map(kk=>
+  `<span><i style="background:${TAGC[kk]}"></i>${KINDL[kk]} · <b class="mono">${P.filter(x=>x.kind===kk).length}</b></span>`).join('');
 $('#year').onclick = ev => { const b=ev.target.closest('.mcard'); if(b && !b.classList.contains('void')) openMonth(b.dataset.k); };
 
 function openMonth(k){
