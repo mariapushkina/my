@@ -31,6 +31,7 @@ button:focus-visible,a:focus-visible,input:focus-visible,[data-tip]:focus-visibl
   .plink,.gobtn,.ctrl button,.evb{min-height:44px;display:inline-flex;align-items:center}
   #lpT input[type=checkbox]{width:22px;height:22px}
 }
+}
 body{background:var(--bg);color:var(--fg);font-family:'Montserrat',system-ui,-apple-system,'Segoe UI',sans-serif;font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased}
 .mono{font-variant-numeric:tabular-nums;letter-spacing:-.01em}
 h1,h2,h3{letter-spacing:-.02em;line-height:1.2}
@@ -588,6 +589,40 @@ footer{padding:26px 0 50px;color:var(--fg-3);font-size:11.5px;line-height:1.75;b
   .top .wrap{height:auto;padding-top:11px;padding-bottom:11px;flex-wrap:wrap}
   .tabs{margin-left:0;width:100%;overflow-x:auto}
   .hero h2{font-size:21px}
+}
+
+/* ===== МОБИЛЬНАЯ ВЕРСИЯ ===== */
+@media(max-width:760px){
+  .wrap{padding:0 16px}
+  .vhero,.sumhero{padding:22px 18px}
+  .vhero h2{font-size:23px;max-width:none}
+  .sumhero h2{font-size:25px}
+  .vh h2{font-size:23px}
+  .panel{padding:16px 14px}
+  .top .wrap{gap:12px}
+  .kpis{gap:10px;margin-bottom:16px}
+  #sumKpi .kpi .v{font-size:29px}
+  /* строки-полоски: название на своей строке */
+  .pfb{flex-wrap:wrap;gap:5px 10px}
+  .pfb .pfl{width:100%}
+  .pfb .pft{flex:1 1 56px;min-width:56px}
+  .pfb .pfv{width:auto!important;min-width:42px}
+  /* диаграмма недель в AEO/GEO */
+  .gantt{padding:14px}
+  .gantt .grow{gap:8px}
+  .gantt .gl2{width:104px;font-size:11.5px}
+  .gantt .gt2 i{font-size:9.5px;padding-left:6px;overflow:hidden}
+  .gantt .gaxis{margin-left:112px}
+  .gantt .gaxis span{font-size:9px}
+  /* таблицы без своего контейнера прокрутки — прокручиваются сами */
+  .panel table{display:block;overflow-x:auto;max-width:100%}
+  /* карточки и сетки в одну колонку */
+  .ygrid{grid-template-columns:1fr}
+  .sumcards{grid-template-columns:1fr}
+  .g3,.dg,.grid2{grid-template-columns:1fr}
+  .g3>*,.dg>*,.grid2>*{min-width:0}
+  /* блок статистики на странице месяца переносится по строкам */
+  .mstat{flex-wrap:wrap;gap:14px}
 }
 </style>
 </head>
